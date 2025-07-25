@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product.name }} - 广之宏食品</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="product-detail">
+        <h1>{{ product.name }}</h1>
+        <div class="product-images">
+            {% for img in product.images %}
+            <img src="{{ url_for('static', filename='images/' + img) }}" alt="{{ product.name }}">
+            {% endfor %}
+        </div>
+        <a class="back-btn" href="{{ url_for('index') }}">返回首页</a>
+    </main>
+</body>
+</html>
