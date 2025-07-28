@@ -1,7 +1,20 @@
 from flask import Flask, render_template
-from flask import Flask
-app = Flask(__name__, static_url_path='', static_folder='.')
+from flask import Flask, send_from_directory
+
 app = Flask(__name__)
+
+# 原有路由保持不变
+@app.route('/')
+def index():
+    ...  # 你的首页逻辑
+
+# 显式托管静态验证文件
+@app.route('/tencent7849794202945294551.txt')
+def tencent_verify():
+    # 第二个参数 '.' 表示从仓库根目录找
+    return send_from_directory('.', 'tencent7849794202945294551.txt')
+
+# 其他路由...
 
 # 产品数据（包含设备展示）
 products = [
