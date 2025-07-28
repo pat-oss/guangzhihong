@@ -1,22 +1,8 @@
-from flask import Flask, render_template
-from flask import Flask, send_from_directory
+from flask import Flask, render_template, send_from_directory
 
 app = Flask(__name__)
 
-# 原有路由保持不变
-@app.route('/')
-def index():
-    ...  # 你的首页逻辑
-
-# 显式托管静态验证文件
-@app.route('/tencent7849794202945294551.txt')
-def tencent_verify():
-    # 第二个参数 '.' 表示从仓库根目录找
-    return send_from_directory('.', 'tencent7849794202945294551.txt')
-
-# 其他路由...
-
-# 产品数据（包含设备展示）
+# 产品数据
 products = [
     {"id": 1, "name": "速冻甜玉米粒", "images": ["product1_1.jpg", "product1_2.jpg", "product1_3.jpg"]},
     {"id": 2, "name": "甜玉米棒",    "images": ["product2_1.jpg", "product2_2.jpg", "product2_3.jpg"]},
@@ -25,19 +11,28 @@ products = [
     {"id": 5, "name": "毛豆",        "images": ["product5_1.jpg", "product5_2.jpg", "product5_3.jpg"]},
     {"id": 6, "name": "花生",        "images": ["product6_1.jpg", "product6_2.jpg", "product6_3.jpg"]},
     {"id": 7, "name": "什锦菜",      "images": ["product7_1.jpg", "product7_2.jpg", "product7_3.jpg"]},
-    {"id": 8, "name": "设备展示",    "images": ["equipment2.jpg", "equipment3.jpg","equipment4.jpg","equipment5.jpg","equipment6.jpg","equipment7.jpg","equipment8.jpg"]}
+    {"id": 8, "name": "设备展示",    "images": ["equipment1.jpg", "equipment2.jpg", "equipment3.jpg",
+                                               "equipment4.jpg", "equipment5.jpg", "equipment6.jpg",
+                                               "equipment7.jpg", "equipment8.jpg"]}
 ]
 
+# 首页
 @app.route('/')
 def index():
     return render_template('index.html', products=products)
 
+# 产品详情页
 @app.route('/product/<int:product_id>')
 def product_detail(product_id):
     product = next((p for p in products if p["id"] == product_id), None)
     if not product:
         return "Product not found", 404
     return render_template('product.html', product=product)
+
+# 静态验证文件
+@app.route('/tencent7849794202945294551.txt')
+def tencent_verify():
+    return send_from_directory('.', 'tencent7849794202945294551.txt')
 
 if __name__ == '__main__':
     app.run(debug=True)
