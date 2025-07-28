@@ -1,5 +1,6 @@
 from flask import Flask, render_template
-
+from flask import Flask
+app = Flask(__name__, static_url_path='', static_folder='.')
 app = Flask(__name__)
 
 # 产品数据（包含设备展示）
