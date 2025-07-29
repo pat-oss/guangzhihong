@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}广之宏食品{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<!-- Banner 区域（相对定位） -->
+<section class="hero">
+    <!-- 顶部浮层：圆标 + 名称 -->
+    <div class="hero-caption">
+        <div class="brand-circle">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="商标" class="logo">
+        </div>
+        <h1 class="company-title">广之宏食品</h1>
+    </div>
+
+    <!-- 原 Banner 图 -->
+    <img src="{{ url_for('static', filename='images/company_banner.jpg') }}" alt="公司横幅">
+</section>
+
+<!-- 横轴导航 -->
+<nav class="nav-bar">
+    <a href="{{ url_for('index') }}"        class="nav-item {% if active=='index' %}active{% endif %}">企业简介</a>
+    <a href="{{ url_for('products') }}"     class="nav-item {% if active=='products' %}active{% endif %}">产品介绍</a>
+    <a href="{{ url_for('news') }}"         class="nav-item {% if active=='news' %}active{% endif %}">企业新闻</a>
+    <a href="{{ url_for('cooperation') }}"  class="nav-item {% if active=='cooperation' %}active{% endif %}">商务合作</a>
+</nav>
+
+<!-- 页面主体 -->
+<main class="main-content">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- 页脚 -->
+<footer>
+    <p>客服电话：0374-7038999</p>
+    <p>微信号：GZH7038999</p>
+    <p>地址：河南省长葛市魏武路中段东侧135号</p>
+</footer>
+
+</body>
+</html>

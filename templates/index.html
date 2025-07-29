@@ -1,47 +1,10 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title>广之宏食品</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <!-- 商标 + 标题 -->
-    <header class="top-brand">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="商标" class="logo">
-        <h1 class="company-title">广之宏食品</h1>
-    </header>
-
-    <!-- 横幅 -->
-    <div class="banner">
-        <img src="{{ url_for('static', filename='images/company_banner.jpg') }}" alt="公司照片">
-    </div>
-
-    <!-- 公司简介 -->
-    <section class="company-intro">
-        <p>
-            许昌广之宏食品有限公司位于河南省长葛市魏武路中段东侧，是一家以发展订单农业、基地种植、速冻加工、冷冻储藏、物流配送等为一体的自营进出口企业。
-            主要生产经营农产品有 速冻甜玉米粒、甜玉米棒、糯玉米棒、甜青豆、毛豆、花生、什锦菜等。
-        </p>
-    </section>
-
-    <!-- 产品 4×2 网格 -->
-    <section class="products-grid">
-        {% for p in products %}
-        <div class="product-card">
-            <a href="{{ url_for('product_detail', product_id=p.id) }}">
-                <img src="{{ url_for('static', filename='images/product' + p.id|string + '.jpg') }}" alt="{{ p.name }}">
-                <h3>{{ p.name }}</h3>
-            </a>
-        </div>
-        {% endfor %}
-    </section>
-
-    <!-- 联系方式 -->
-    <footer>
-        <p>客服电话：0374-7038999</p>
-        <p>微信号：GZH7038999</p>
-        <p>地址：河南省长葛市魏武路中段东侧135号</p>
-    </footer>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}企业简介 - 广之宏食品{% endblock %}
+{% block content %}
+<section class="company-intro">
+    <p>
+       许昌广之宏食品有限公司位于河南省长葛市魏武路中段东侧，公司成立于2020年，是一家以发展订单农业、基地种植、速冻加工、冷冻储藏、物流配送等为一体的自营进出口企业。
+公司的种植、加工基地分别位于河南、内蒙、河北、山西等省、自治区。有先进的生产加工流水线，完善的产品检测设备和专业技术人员，加工厂日加工能力100吨，年生产加工能力2万吨。公司主要生产经营农产品有 速冻甜玉米粒、速冻甜玉米棒、糯玉米棒、甜青豆、青刀豆、毛豆、蚕豆、什锦菜、花生、胡萝卜丁、西兰花、白花菜、荠菜、草莓、雪梨丁、黄桃丁、黄桃瓣等。
+    </p>
+</section>
+{% endblock %}

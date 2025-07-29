@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}产品介绍 - 广之宏食品{% endblock %}
+{% block content %}
+<section class="products-grid">
+    {% for p in products %}
+    <div class="product-card">
+        <a href="{{ url_for('product_detail', product_id=p.id) }}">
+            <img src="{{ url_for('static', filename='images/product' + p.id|string + '.jpg') }}" alt="{{ p.name }}">
+            <h3>{{ p.name }}</h3>
+        </a>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
